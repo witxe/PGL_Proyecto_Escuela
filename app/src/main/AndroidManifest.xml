@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    package="com.example.juan.proyecto">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.example.juan.proyecto.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.juan.proyecto.MenuDrawerActivity"
+            android:label="@string/title_activity_menu_drawer_activity"
+            android:parentActivityName="com.example.juan.proyecto.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.juan.proyecto.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.example.juan.proyecto.Activity3Formulario"
+            android:label="Alumno"
+            android:parentActivityName="com.example.juan.proyecto.ActivityLista"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.juan.proyecto.ActivityLista" />
+        </activity>
+        <activity
+            android:name="com.example.juan.proyecto.Activity4Formulario"
+            android:label="Profesor"
+            android:parentActivityName="com.example.juan.proyecto.ActivityLista2"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.juan.proyecto.ActivityLista2" />
+        </activity>
+        <activity
+            android:name="com.example.juan.proyecto.Activity5Niveles"
+            android:label="Niveles"
+            android:parentActivityName="com.example.juan.proyecto.MenuDrawerActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.juan.proyecto.MenuDrawerActivity" />
+        </activity>
+        <activity
+            android:name="com.example.juan.proyecto.Activity6Mostrar"
+            android:label="Mostrar Alumnos"
+            android:parentActivityName="com.example.juan.proyecto.ActivityLista">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.juan.proyecto.Activity3Formulario" />
+        </activity>
+        <activity
+            android:name="com.example.juan.proyecto.Activity7Mostrar"
+            android:label="Mostrar Profesores"
+            android:parentActivityName="com.example.juan.proyecto.Activity4Formulario">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.juan.proyecto.Activity4Formulario" />
+        </activity>
+        <activity
+            android:name="com.example.juan.proyecto.ActivityHorario"
+            android:label="@string/title_activity_horario"
+            android:parentActivityName="com.example.juan.proyecto.MenuDrawerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.juan.proyecto.MenuDrawerActivity" />
+        </activity>
+        <activity
+            android:name="com.example.juan.proyecto.ActivityLista"
+            android:label="@string/listado_alumnos"
+            android:parentActivityName="com.example.juan.proyecto.MenuDrawerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.juan.proyecto.MenuDrawerActivity" />
+        </activity>
+        <activity
+            android:name="com.example.juan.proyecto.ActivityLista2"
+            android:label="@string/listado_profesores"
+            android:parentActivityName="com.example.juan.proyecto.MenuDrawerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.juan.proyecto.MenuDrawerActivity" />
+        </activity>
+
+        <provider
+            android:name="com.example.juan.proyecto.Proveedor1.Proveedor"
+            android:authorities="com.example.juan.proyecto.Proveedor1.Proveedor"
+            android:enabled="true"
+            android:exported="true"
+            android:multiprocess="true" />
+
+        <activity
+            android:name="com.example.juan.proyecto.ActivityDialog"
+            android:parentActivityName="com.example.juan.proyecto.ActivityLista"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.juan.proyecto.ActivityLista" />
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">English Academy</string>
+    <!-- activity_main -->
+    <string name="txtEscuela">English Academy</string>
+    <string name="comenzar">Comenzar</string>
+    <string name="user">User</string>
+    <string name="password">Password</string>
+
+    <!-- activity_2_Menu -->
+    <string name="btnAlumnos">alumnos</string>
+    <string name="btnProfesores">profesores</string>
+    <string name="btnNiveles">niveles</string>
+    <string name="btnHorarios">horarios</string>
+
+    <!-- activity_3 y 4_alumnos y profesores -->
+    <string name="txtAlumno">Nuevo Alumno</string>
+    <string name="txtNombre">Nombre</string>
+    <string name="txtEmail">Email</string>
+    <string name="txtTelefono">Teléfono</string>
+    <string name="txtSexo">Sexo</string>
+    <string name="txtEdad">Edad</string>
+    <string name="radHombre">masculino</string>
+    <string name="radMujer">femenino</string>
+    <string name="radOtro">otro</string>
+    <string name="btnConfirmar">confirmar</string>
+
+    <!-- activity_5_niveles -->
+    <string name="starters">Starters</string>
+    <string name="movers">Movers</string>
+    <string name="flyers">Flyers</string>
+    <string name="k">KET</string>
+    <string name="p">PET</string>
+    <string name="f">FCE</string>
+    <string name="ca">CAE</string>
+    <string name="cp">CPE</string>
+    <string name="ket">Key English Test</string>
+    <string name="pet">Preliminary English Test</string>
+    <string name="fce">First Certificate English</string>
+    <string name="cae">Cambridge Advanced English</string>
+    <string name="cpe">Cambridge Proficiency English</string>
+
+    <!-- activity_6_mostrar -->
+    <string name="alumno">Alumno</string>
+    <!-- activity_7_mostrar -->
+    <string name="profesor">Profesor</string>
+
+    <!-- Errores -->
+    <string name="error_obligatorio">campo obligatorio</string>
+    <string name="error_password">Debe contener al menos un dígito y una letra mayúscula</string>
+    <string name="error_edad">La edad debe ser entre 5 y 99</string>
+    <string name="error_sexo">Indica el sexo</string>
+    <string name="error_email">Email incorrecto</string>
+    <string name="error_telefono">Debe ser de 9 cifras</string>
+    <string name="title_activity_menu_drawer_activity">Gestión</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- acciones del menu -->
+    <string name="action_settings">Settings</string>
+    <string name="action_ayuda">Ayuda</string>
+    <string name="alumnos">Alumnos</string>
+    <string name="profesores">Profesores</string>
+    <string name="niveles">Niveles</string>
+    <string name="horario">Horarios</string>
+    <string name="academy">English Academy</string>
+    <string name="established">Established 2017</string>
+    <string name="title_activity_horario">Horario</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="listado_alumnos">Alumnos</string>
+    <string name="editar">editar</string>
+    <string name="borrar">borrar</string>
+    <string name="title_activity_actividad_escuela">ActividadEscuela</string>
+    <string name="title_activity_escuela">ActivityEscuela</string>
+    <string name="id">ID:</string>
+    <string name="error_edad_profesor">edad entre 18 y 70</string>
+    <string name="listado_profesores">Profesores</string>
+    <string name="action_confirmar">Confirmar</string>
+    <string name="action_guardar">Guardar</string>
+    <string name="action_foto">Disparar foto</string>
+    <string name="action_galeria">Galeria</string>
+
+
+</resources>

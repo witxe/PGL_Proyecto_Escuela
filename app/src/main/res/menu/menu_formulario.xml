@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.juan.proyecto.Activity4Formulario" >
+
+    <item
+        android:id="@+id/action_foto"
+        android:orderInCategory="100"
+        android:title="@string/action_foto"
+        app:showAsAction="always"
+        android:iconTint="@color/white_background"
+        android:icon="@drawable/ic_add_photo"
+        />
+
+    <item
+        android:id="@+id/action_galeria"
+        android:orderInCategory="100"
+        android:title="@string/action_galeria"
+        app:showAsAction="always"
+        android:iconTint="@color/white_background"
+        android:icon="@drawable/ic_galeria"
+        />
+
+    <item
+        android:id="@+id/action_guardar"
+        android:orderInCategory="100"
+        android:title="@string/action_guardar"
+        app:showAsAction="always"
+        android:iconTint="@color/white_background"
+        android:icon="@drawable/ic_save"
+        />
+
+</menu>
