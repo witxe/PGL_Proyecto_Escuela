@@ -31,7 +31,9 @@ public class Activity4Formulario extends AppCompatActivity {
 
     private static final int PETICION_FOTO = 1;
     private static final int PETICION_GALERIA = 2;
-    private static ImageView ivFoto;
+    private Bitmap foto = null;
+    private ImageView ivFoto;
+    private ImageView iv_detalle;
     private EditText txtNombre;
     private EditText txtEmail;
     private EditText txtTelefono;
@@ -39,7 +41,7 @@ public class Activity4Formulario extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private ImageView imgSexo;
-    private ImageView iv_detalle;
+
     private int llamada;
     Intent intent;
     int idRadio = -1;
@@ -82,13 +84,8 @@ public class Activity4Formulario extends AppCompatActivity {
         switch(requestCode){
             case PETICION_FOTO:
                 if (resultCode == RESULT_OK) {
-                    Bitmap foto = (Bitmap) data.getExtras().get("data");
+                    foto = (Bitmap) data.getExtras().get("data");
                     ivFoto.setImageBitmap(foto);
-                    try {
-                        Utilidades.storeImage(foto, this, "image.png");
-                    } catch (IOException e) {
-                        Toast.makeText(context, "No se pudo guardar la imagen", Toast.LENGTH_SHORT).show();
-                    }
                 } else {
                     // El usuario hizo click en cancelar
                 }
@@ -151,14 +148,15 @@ public class Activity4Formulario extends AppCompatActivity {
         Intent i = getIntent();
         llamada = i.getIntExtra("LLAMADA", 0); // 1: insertar 2: modificar 3: borrar
 
+        if (foto == null) ivFoto.setImageResource(R.drawable.ic_portrait);
 
         switch(llamada){
-            case 1:
+            case 1: //insert
                 //txtNombre.setSelected(false);
                 break;
-            case 2:
+            case 2: //update
                 profesor = i.getParcelableExtra("profesor");
-                Toast.makeText(context, "Profesor "+profesor.getNombre(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Profesor "+profesor.getNombre(), Toast.LENGTH_SHORT).show();
                 if (profesor != null) {
                     // Encabezado con el ID del item seleccionado
                     //ivFoto.setImageResource(R.drawable. la foto);
@@ -289,6 +287,18 @@ public class Activity4Formulario extends AppCompatActivity {
 
         intent.putExtra("profesor", profesor);
         Uri uri = getContentResolver().insert(Contrato.Profesores.CONTENT_URI, toContentValues());
+
+        //Recupera el ID del profesor insertado que está siempre en el último segmento de la uri
+        String uriID = uri.getLastPathSegment();
+
+        if (profesor != null) try {
+            Toast.makeText(context, "img_" + uriID + ".png", Toast.LENGTH_SHORT).show();
+            //Utilidades.storeImage(foto, context, "img_"+uriID+".png");  DA ERROR SI NO HAY FOTO
+        } catch (Exception e) {
+            Toast.makeText(context, "No se guardó la foto", Toast.LENGTH_SHORT).show();
+        }
+
+
         startActivity(intent);
     }
 

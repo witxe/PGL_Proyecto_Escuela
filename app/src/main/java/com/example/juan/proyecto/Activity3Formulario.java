@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -25,13 +26,16 @@ import com.example.juan.proyecto.Proveedor1.Proveedor;
 import com.example.juan.proyecto.constantes.Utilidades;
 import com.example.juan.proyecto.pojos.Alumno;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Activity3Formulario extends AppCompatActivity {
 
     private static final int PETICION_FOTO = 1;
     private static final int PETICION_GALERIA = 2;
-    private static ImageView ivFoto;
+    Bitmap foto = null;
+    private ImageView ivFoto;
+    private ImageView iv_detalle;
     private EditText txtNombre;
     private EditText txtEmail;
     private EditText txtTelefono;
@@ -39,7 +43,7 @@ public class Activity3Formulario extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private ImageView imgSexo;
-    private ImageView iv_detalle;
+
     private int llamada;
     Intent intent;
     int idRadio = -1;
@@ -82,13 +86,8 @@ public class Activity3Formulario extends AppCompatActivity {
         switch(requestCode){
             case PETICION_FOTO:
                 if (resultCode == RESULT_OK) {
-                    Bitmap foto = (Bitmap) data.getExtras().get("data");
+                    foto = (Bitmap) data.getExtras().get("data");
                     ivFoto.setImageBitmap(foto);
-                    try {
-                        Utilidades.storeImage(foto, this, "image.png");
-                    } catch (IOException e) {
-                        Toast.makeText(context, "No se pudo guardar la imagen", Toast.LENGTH_SHORT).show();
-                    }
                 } else {
                     // El usuario hizo click en cancelar
                 }
@@ -97,6 +96,7 @@ public class Activity3Formulario extends AppCompatActivity {
                 if (resultCode == RESULT_OK){
                     Uri uri = data.getData();
                     ivFoto.setImageURI(uri);
+                    // foto = (Bitmap) data.getExtras().get("data");  DA ERROR
                 } else {
                     // El usuario hizo click en cancelar
                 }
@@ -151,18 +151,24 @@ public class Activity3Formulario extends AppCompatActivity {
         Intent i = getIntent();
         llamada = i.getIntExtra("LLAMADA", 0); // 1: insertar 2: modificar 3: borrar
 
+        if (foto == null) ivFoto.setImageResource(R.drawable.ic_portrait);
+
+        // foto = ((BitmapDrawable) ivFoto.getDrawable()).getBitmap();
 
         switch(llamada){
-            case 1:
+            case 1: // insert
                 //txtNombre.setSelected(false);
                 break;
-            case 2:
+            case 2: // update
                 alumno = i.getParcelableExtra("alumno");
-                Toast.makeText(context, "Alumno "+alumno.getNombre(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Alumno "+alumno.getNombre(), Toast.LENGTH_SHORT).show();
                 if (alumno != null) {
                     // Encabezado con el ID del item seleccionado
-                    //ivFoto.setImageResource(R.drawable.la foto);
-                    iv_detalle.setImageResource(R.drawable.ic_student);
+
+
+                    if (foto == null) ivFoto.setImageResource(R.drawable.ic_portrait);
+                    //else ivFoto.setImageResource(R.drawable.la foto);
+                    //iv_detalle.setImageResource(R.drawable.ic_student);
                     TextView label_id = findViewById(R.id.label_id);
                     label_id.setText("ID:  ");
                     label_id.setTextSize(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM, 20);
@@ -286,9 +292,20 @@ public class Activity3Formulario extends AppCompatActivity {
                 Integer.parseInt(txtEdad.getText().toString()),
                 radioButton.getText().toString(),
                 "");
-
+                //foto.toString());
         intent.putExtra("alumno", alumno);
         Uri uri = getContentResolver().insert(Contrato.Alumnos.CONTENT_URI, toContentValues());
+
+        //Recupera el ID del alumno insertado que está siempre en el último segmento de la uri
+        String uriID = uri.getLastPathSegment();
+
+        if (alumno != null) try {
+            Toast.makeText(context, "img_" + uriID + ".png", Toast.LENGTH_SHORT).show();
+            //Utilidades.storeImage(foto, context, "img_"+uriID+".png"); DA ERROR SI NO HAY FOTO
+        } catch (Exception e) {
+            Toast.makeText(context, "No se guardó la foto", Toast.LENGTH_SHORT).show();
+        }
+
         startActivity(intent);
     }
 
@@ -302,6 +319,8 @@ public class Activity3Formulario extends AppCompatActivity {
             values.put("TELEFONO", String.valueOf(txtTelefono.getText()));
             values.put("EDAD", String.valueOf(txtEdad.getText()));
             values.put("SEXO", radioButton.getText().toString());
+            //values.put("FOTO", ivFoto.getDrawable().toString());
+
 
         String selection = Contrato.Alumnos._ID + "=?";
         String[] selectionArgs = new String[]{String.valueOf(alumno.getId())};
@@ -309,6 +328,15 @@ public class Activity3Formulario extends AppCompatActivity {
         ContentResolver resolver = getContentResolver();
         //Cursor cursor = resolver.update(uri, values, selection, selectionArgs);
         resolver.update(uri, values, selection, selectionArgs);
+
+        String fotoName = "img_"+alumno.getId()+".png";
+        try {
+            Toast.makeText(context, "FOTO: "+fotoName, Toast.LENGTH_SHORT).show();
+            Utilidades.loadImageStorage(context, fotoName, ivFoto);
+        } catch (FileNotFoundException e) {
+            Toast.makeText(context, "No hay imagen asociada", Toast.LENGTH_SHORT).show();
+        }
+
         startActivity(intent); //Daba error porque método validar() estaba mal colocado
 
         //startActivityForResult(intent, -1); VER NOTA VERDE / NO HACE FALTA - SOLUCIONADO
@@ -340,7 +368,7 @@ public class Activity3Formulario extends AppCompatActivity {
         values.put("TELEFONO", alumno.getTelefono());
         values.put("EDAD", alumno.getEdad());
         values.put("SEXO", alumno.getSexo());
-        values.put("FOTO", alumno.getFoto());
+        //values.put("FOTO", alumno.getFoto());
         return values;
     }
 

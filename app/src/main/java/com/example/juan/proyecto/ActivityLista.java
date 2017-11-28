@@ -236,7 +236,7 @@ public class  ActivityLista extends AppCompatActivity {
                 cursor.getString(3),
                 cursor.getInt(4),
                 cursor.getString(5),
-                cursor.getString(6)
+                ""
                 );
         alumno.setId(id);
         cursor.close();

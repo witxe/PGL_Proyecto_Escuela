@@ -12,10 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.juan.proyecto.Proveedor1.Contrato;
+import com.example.juan.proyecto.constantes.Utilidades;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * Created by juan on 10/11/17.
@@ -48,8 +53,19 @@ public class ListCursorAdapter extends CursorAdapter {
 
         String foto = cursor.getString(cursor.getColumnIndex(Contrato.Alumnos.FOTO));
 
+        /*
+        int id =  cursor.getInt(cursor.getColumnIndex(Contrato.Alumnos._ID));
+        String nombre = cursor.getString(cursor.getColumnIndex(Contrato.Alumnos.NOMBRE));
+        String edad = cursor.getString(cursor.getColumnIndex(Contrato.Alumnos.EDAD));
+        String email = cursor.getString(cursor.getColumnIndex(Contrato.Alumnos.EMAIL));
+        String telefono = cursor.getString(cursor.getColumnIndex(Contrato.Alumnos.TELEFONO));
+        String sexo = cursor.getString(cursor.getColumnIndex(Contrato.Alumnos.SEXO));
+        String foto = cursor.getString(cursor.getColumnIndex(Contrato.Alumnos.FOTO));
+        */
+
         // Setup.
         detalle.setText(datos);
+        //detalle.setText("\nNombre: "+nombre);
 
         //RequestOptions requestOptions = new RequestOptions();
         //requestOptions.placeholder(R.drawable.ic_menu_manage);
@@ -69,7 +85,7 @@ public class ListCursorAdapter extends CursorAdapter {
                             .asBitmap()
                             //.centerCrop()*/
                 .with(context)
-                .load(Uri.parse(Contrato.Alumnos.FOTO + foto))
+                .load(Uri.parse(Contrato.Alumnos.FOTO + imagen))
                 .asBitmap()
                 .error(R.drawable.ic_menu_camera)
                 .centerCrop()
@@ -84,4 +100,5 @@ public class ListCursorAdapter extends CursorAdapter {
                 });
 
     }
+
 }

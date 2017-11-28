@@ -1,5 +1,8 @@
 package com.example.juan.proyecto.pojos;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -16,6 +19,7 @@ public class Alumno implements Parcelable {
     private int edad;
     private String sexo;
     private String foto;
+    //private Bitmap foto = null;
 
     public Alumno(String nombre, String email, String telefono, int edad, String sexo, String foto) {
         this.id = id;
@@ -35,6 +39,8 @@ public class Alumno implements Parcelable {
         edad = in.readInt();
         sexo = in.readString();
         foto = in.readString();
+        //foto = (Bitmap) in.readValue(getClass().getClassLoader());
+
     }
 
     public static final Creator<Alumno> CREATOR = new Creator<Alumno>() {
@@ -89,13 +95,11 @@ public class Alumno implements Parcelable {
         this.edad = edad;
     }
 
-    public String getFoto() {
-        return foto;
-    }
+    public String getFoto() { return foto; }
+    //public Bitmap getFoto() { return foto; }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
+    public void setFoto(String foto) { this.foto = foto; }
+    //public void setFoto(Bitmap foto) { this.foto = foto; }
 
     @Override
     public int describeContents() {
@@ -111,6 +115,8 @@ public class Alumno implements Parcelable {
         dest.writeInt(edad);
         dest.writeString(sexo);
         dest.writeString(foto);
+        //dest.writeValue(foto);
     }
+
 }
 

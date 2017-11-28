@@ -28,19 +28,17 @@
         android:layout_marginBottom="5dp">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:id="@+id/iv_foto"
-            android:src="@drawable/ic_camera"
-            android:layout_marginRight="30dp"/>
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/iv_foto" />
         <!-- cambiar icono para que aparezca alumno o profesor -->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/iv_detalle"
             android:src="@color/colorPrimary"
-            android:layout_marginTop="53dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="1dp"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -48,14 +46,14 @@
             android:id="@+id/label_id"
             android:textColor="@color/colorPrimaryDark"
             android:text=""
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="18dp"
+            android:layout_marginTop="97dp"
+            android:layout_marginLeft="25dp"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/item_id"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="97dp"
             android:layout_marginLeft="3dp"
             android:textColor="@color/colorPrimaryDark"
             android:text=""
@@ -65,7 +63,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:orientation="vertical">
         <include
             layout="@layout/layout_formulario"

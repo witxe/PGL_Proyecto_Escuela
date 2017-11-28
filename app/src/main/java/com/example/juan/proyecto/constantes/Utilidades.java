@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 
+import com.example.juan.proyecto.ListCursorAdapter;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
